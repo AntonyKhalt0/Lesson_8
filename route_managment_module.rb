@@ -17,8 +17,7 @@ module RouteManagment
     puts 'Введите номер первой и последней станции: '
     station_first = gets.chomp.to_i
     station_last = gets.chomp.to_i
-    @routes.push(Route.new(route_name(station(station_first), station(station_last)),
-                           station(station_first), station(station_last))
+    @routes.push(route_new(station_first, station_last))
   end
 
   def show_route_stations
@@ -89,5 +88,9 @@ module RouteManagment
     puts 'Список доступных станций: '
     @stations.each { |station| puts "Станция - #{station.name}" unless @stations.include? station }
   end
-  
+
+  def route_new(station_first, station_last)
+    Route.new(route_name(station(station_first), station(station_last)),
+              station(station_first), station(station_last))
+  end
 end
